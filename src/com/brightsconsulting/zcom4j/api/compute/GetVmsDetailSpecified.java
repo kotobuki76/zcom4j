@@ -33,7 +33,7 @@ public class GetVmsDetailSpecified extends APIInvoker {
 	 * @throws IOException
 	 * @throws AuthenticationException
 	 */
-	GetVmsDetailSpecifiedResponse request(Token token, String tenantId, String serverId)
+	public GetVmsDetailSpecifiedResponse request(Token token, String tenantId, String serverId)
 			throws ClientProtocolException, IOException, AuthenticationException {
 
 		String url = "https://compute.tyo1.cloud.z.com/v2/" + tenantId + "/servers/" + serverId;
