@@ -37,7 +37,7 @@ public class CreateVm extends APIInvoker {
 	 * @throws AuthenticationException
 	 * @throws BadRequestException 
 	 */
-	CreateVmResponse request(Token token, CreateVmRequest req)
+	public CreateVmResponse request(Token token, CreateVmRequest req)
 			throws ClientProtocolException, IOException,
 			AuthenticationException, BadRequestException {
 
