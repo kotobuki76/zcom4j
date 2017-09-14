@@ -17,10 +17,20 @@ import com.brightsconsulting.zcom4j.json.response.identity.GetVersionDetailRespo
  */
 public class GetVersionDetail extends APIInvoker {
 
+	/**
+	 * コンストラクタ
+	 */
 	public GetVersionDetail() {
 		super();
 	}
 
+	/**
+	 * バージョン情報詳細取得APIの呼び出し
+	 * @param type
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	GetVersionDetailResponse request(Version.Type type)
 			throws ClientProtocolException, IOException {
 

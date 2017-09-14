@@ -21,17 +21,22 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
+/**
+ * 
+ * @author kotobuki76
+ *
+ */
 public class APIClient {
-	RequestConfig requestConfig;
-	List<Header> headers = new ArrayList<Header>();
-	int socketTimeout = 30;
-	int connectionTimeout = 30;
-	HttpClient client;
+	
+	private RequestConfig requestConfig;
+	private List<Header> headers = new ArrayList<Header>();
+	private HttpClient client;
 
+	/**
+	 * 
+	 */
 	public APIClient() {
 		this.requestConfig = RequestConfig.DEFAULT;
-		// .setConnectTimeout(this.connectionTimeout)
-		// .setSocketTimeout(this.socketTimeout).build();
 
 	}
 
@@ -41,14 +46,13 @@ public class APIClient {
 				.setDefaultHeaders(this.headers).build();
 	}
 
-	public void setHeader(String k, String v) {
-		this.headers.add(new BasicHeader(k, v));
-	}
-
-	public void setParam() {
-
-	}
-
+	/**
+	 * 
+	 * @param url　URL文字列
+	 * @return　レスポンス文字列
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public String get(String url) throws ClientProtocolException, IOException {
 		this.createClient();
 		HttpGet get = new HttpGet(url);
@@ -65,6 +69,15 @@ public class APIClient {
 
 	}
 
+	/**
+	 * 
+	 * @param url　URL文字列
+	 * @param data　送信JSONデータ
+	 * @return　レスポンス文字列
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws AuthenticationException
+	 */
 	public String post(String url, String data) throws ClientProtocolException,
 			IOException, AuthenticationException {
 		this.createClient();
@@ -94,14 +107,19 @@ public class APIClient {
 		}
 	}
 
+
 	public String put() {
 		return null;
 	}
+
 
 	public String delete() {
 		return null;
 	}
 
+	/**
+	 * HttpClientを通信CLOSEして終了する
+	 */
 	public void close() {
 		HttpClientUtils.closeQuietly(this.client);
 	}

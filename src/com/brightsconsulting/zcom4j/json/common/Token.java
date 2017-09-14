@@ -5,14 +5,33 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * JSONオブジェクト トークン情報
+ * @author kotobuki76
+ *
+ */
 public class Token {
-
+	/**
+	 * 
+	 */
 	@JsonProperty("audit_ids")
 	public ArrayList<String> auditIds;
+	/**
+	 * 
+	 */
 	public Date expires;
+	/**
+	 * 
+	 */
 	public String id;
+	/**
+	 * 
+	 */
 	@JsonProperty("issued_at")
 	public String issuedAt;
+	/**
+	 * 
+	 */
 	public Tenant tenant;
 
 

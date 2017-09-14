@@ -9,11 +9,30 @@ import com.brightsconsulting.zcom4j.api.common.APIInvoker;
 import com.brightsconsulting.zcom4j.json.request.identity.PostTokensRequest;
 import com.brightsconsulting.zcom4j.json.response.identity.PostTokensResponse;
 
+/**
+ * トークン発行 https://cloud.z.com/sg/ja/cloud/docs/identity-post_tokens.html
+ * 
+ * @author kotobuki76
+ * @version 1.0
+ * 
+ */
 public class PostTokens extends APIInvoker {
+	
+	/**
+	 * コンストラクタ
+	 */
 	public PostTokens() {
 		super();
 	}
 
+	/**
+	 * トークン発行APIの呼び出し
+	 * @param req　リクエスト用のPostTokensRequestオブジェクト
+	 * @return　結果を格納するPostTokensResponseオブジェクト
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws AuthenticationException
+	 */
 	public PostTokensResponse request(PostTokensRequest req)
 			throws ClientProtocolException, IOException,
 			AuthenticationException {

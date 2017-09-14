@@ -15,10 +15,19 @@ import com.brightsconsulting.zcom4j.json.response.identity.GetVersionListRespons
  */
 public class GetVersionList extends APIInvoker {
 
+	/**
+	 * コンストラクタ
+	 */
 	public GetVersionList() {
 		super();
 	}
 
+	/**
+	 * バージョン情報取得APIの呼び出し
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	GetVersionListResponse request() throws ClientProtocolException,
 			IOException {
 		String url = "https://identity.tyo1.cloud.z.com/";
