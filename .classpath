@@ -19,10 +19,5 @@
 	<classpathentry kind="lib" path="lib/httpmime-4.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jna-platform-4.1.0.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/servlet-api.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/jasper.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/jsp-api.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/el-api.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/lib/annotations-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

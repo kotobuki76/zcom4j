@@ -1,4 +1,4 @@
-package com.brightsconsulting.zcom4j.api.identity;
+package com.brightsconsulting.zcom4j.api.compute;
 
 import java.io.IOException;
 
@@ -6,16 +6,21 @@ import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
-import com.brightsconsulting.zcom4j.json.response.identity.GetVersionListResponse;
+import com.brightsconsulting.zcom4j.json.common.Token;
+import com.brightsconsulting.zcom4j.json.response.compute.GetVmsDetailSpecifiedResponse;
 import com.brightsconsulting.zcom4j.util.JsonWriter;
+import com.brightsconsulting.zcom4j.util.ZcomTokenManager;
 
-public class GetVersionsTest {
+public class GetVmsDetailSpecifiedTest {
 
 	@Test
 	public void test() {
-		GetVersionList getVersions = new GetVersionList();
+		Token token;
+
+		GetVmsDetailSpecified getVmsDetailSpecified = new GetVmsDetailSpecified();
 		try {
-			GetVersionListResponse res = getVersions.request();
+			token = ZcomTokenManager.loadDefault();
+			GetVmsDetailSpecifiedResponse res = getVmsDetailSpecified.request(token, token.tenant.id, "5c6d6cf8-eba7-4642-8ca9-6fe1c52e96dd");
 			System.out.println(JsonWriter.toString(res));
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -28,5 +33,4 @@ public class GetVersionsTest {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -2,13 +2,11 @@ package com.brightsconsulting.zcom4j.json.common;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import com.brightsconsulting.zcom4j.json.common.MediaType;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
