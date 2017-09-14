@@ -10,7 +10,6 @@ import com.brightsconsulting.zcom4j.api.common.APIInvoker;
 import com.brightsconsulting.zcom4j.json.common.Token;
 import com.brightsconsulting.zcom4j.json.request.compute.CreateVmRequest;
 import com.brightsconsulting.zcom4j.json.response.compute.CreateVmResponse;
-import com.brightsconsulting.zcom4j.json.response.compute.GetVersionDetailResponse;
 
 /**
  * VM追加 https://cloud.z.com/sg/ja/cloud/docs/compute-create_vm.html

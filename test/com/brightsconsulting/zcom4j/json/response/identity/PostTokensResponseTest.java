@@ -1,13 +1,10 @@
 package com.brightsconsulting.zcom4j.json.response.identity;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 import java.io.IOException;
 
 import org.junit.Test;
 
-import com.brightsconsulting.zcom4j.json.common.Version;
+import com.brightsconsulting.zcom4j.util.JsonWriter;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +18,7 @@ public class PostTokensResponseTest {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			PostTokensResponse res = mapper.readValue(this.json, PostTokensResponse.class);
+			System.out.println(JsonWriter.toString(res));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

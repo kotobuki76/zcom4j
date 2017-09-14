@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.brightsconsulting.zcom4j.json.common.Version;
 import com.brightsconsulting.zcom4j.json.response.identity.GetVersionDetailResponse;
+import com.brightsconsulting.zcom4j.util.JsonWriter;
 
 public class GetVersionDetailTest {
 
@@ -17,6 +18,7 @@ public class GetVersionDetailTest {
 		try {
 			GetVersionDetailResponse res = getVersionDetail
 					.request(Version.Type.V2_0);
+			System.out.println(JsonWriter.toString(res));
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,6 +7,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import com.brightsconsulting.zcom4j.json.response.identity.GetVersionListResponse;
+import com.brightsconsulting.zcom4j.util.JsonWriter;
 
 public class GetVersionsTest {
 
@@ -15,6 +16,7 @@ public class GetVersionsTest {
 		GetVersionList getVersions = new GetVersionList();
 		try {
 			GetVersionListResponse res = getVersions.request();
+			System.out.println(JsonWriter.toString(res));
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
