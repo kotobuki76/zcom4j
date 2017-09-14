@@ -18,16 +18,17 @@ import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+
+import com.brightsconsulting.zcom4j.json.common.Token;
 
 /**
  * 
  * @author kotobuki76
- *
+ * 
  */
 public class APIClient {
-	
+
 	private RequestConfig requestConfig;
 	private List<Header> headers = new ArrayList<Header>();
 	private HttpClient client;
@@ -48,20 +49,29 @@ public class APIClient {
 
 	/**
 	 * 
-	 * @param url　URL文字列
+	 * @param url
+	 *            　URL文字列
 	 * @return　レスポンス文字列
 	 * @throws ClientProtocolException
 	 * @throws IOException
+	 * @throws AuthenticationException 
 	 */
-	public String get(String url) throws ClientProtocolException, IOException {
+	public String get(String url, Token token) throws ClientProtocolException,
+			IOException, AuthenticationException {
 		this.createClient();
 		HttpGet get = new HttpGet(url);
+		get.setHeader("Accept", "application/json");
+		if (token != null) {
+			get.setHeader("X-Auth-Token", token.id);
+		}
 		HttpResponse response = this.client.execute(get);
 		HttpEntity entity = response.getEntity();
 		int code = response.getStatusLine().getStatusCode();
 		if ((code == 200) || (code == 300)) {
 			String html = EntityUtils.toString(entity, "UTF-8");
 			return html;
+		} else if (code == 401) {
+			throw new AuthenticationException();
 		} else {
 			System.out.println(response.getStatusLine().getStatusCode());
 			throw new FileNotFoundException();
@@ -69,23 +79,33 @@ public class APIClient {
 
 	}
 
+	public String get(String url) throws ClientProtocolException, IOException, AuthenticationException {
+		return this.get(url, null);
+	}
+
 	/**
 	 * 
-	 * @param url　URL文字列
-	 * @param data　送信JSONデータ
+	 * @param url
+	 *            　URL文字列
+	 * @param data
+	 *            　送信JSONデータ
 	 * @return　レスポンス文字列
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws AuthenticationException
 	 */
-	public String post(String url, String data) throws ClientProtocolException,
-			IOException, AuthenticationException {
+	public String post(String url, String data, Token token)
+			throws ClientProtocolException, IOException,
+			AuthenticationException {
 		this.createClient();
 		HttpPost post = null;
 		post = new HttpPost(url);
 		post.setHeader("Content-Type",
 				"application/x-www-form-urlencoded; charset=UTF-8");
-		post.setHeader("Accept", "Accept: application/json");
+		post.setHeader("Accept", "application/json");
+		if (token != null) {
+			post.setHeader("X-Auth-Token", token.id);
+		}
 		StringEntity requestEntity = new StringEntity(data,
 				ContentType.APPLICATION_JSON);
 		post.setEntity(requestEntity);
@@ -107,11 +127,14 @@ public class APIClient {
 		}
 	}
 
+	public String post(String url, String data) throws ClientProtocolException,
+			IOException, AuthenticationException {
+		return this.post(url, data, null);
+	}
 
 	public String put() {
 		return null;
 	}
-
 
 	public String delete() {
 		return null;

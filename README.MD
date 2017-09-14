@@ -17,3 +17,4 @@
 |名称|クラス|
 |:--|:--|
 |[バージョン情報取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_list.html)|GetVersionList|
+|[バージョン情報詳細取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_detail.html)|GetVersionDetail|

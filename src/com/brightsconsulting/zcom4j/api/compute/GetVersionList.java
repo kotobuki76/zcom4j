@@ -2,6 +2,7 @@ package com.brightsconsulting.zcom4j.api.compute;
 
 import java.io.IOException;
 
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 
 import com.brightsconsulting.zcom4j.api.common.APIInvoker;
@@ -27,9 +28,10 @@ public class GetVersionList extends APIInvoker {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
+	 * @throws AuthenticationException 
 	 */
 	GetVersionListResponse request() throws ClientProtocolException,
-			IOException {
+			IOException, AuthenticationException {
 		String url = "https://compute.tyo1.cloud.z.com/";
 		String json = this.getAPIClient().get(url);
 		GetVersionListResponse resVersions = this.getObjectMapper().readValue(
