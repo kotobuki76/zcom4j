@@ -19,7 +19,7 @@ public class Version {
 	 */
 	public static enum Type {
 
-		V1_0("v1"), V2_0("v2.0");
+		V1_0("v1"), V2_0("v2.0"), V2("v2");;
 
 		private final String name;
 

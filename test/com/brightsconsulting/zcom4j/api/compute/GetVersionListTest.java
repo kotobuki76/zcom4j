@@ -2,6 +2,7 @@ package com.brightsconsulting.zcom4j.api.compute;
 
 import java.io.IOException;
 
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
@@ -18,6 +19,9 @@ public class GetVersionListTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AuthenticationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
