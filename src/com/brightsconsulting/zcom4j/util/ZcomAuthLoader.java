@@ -21,24 +21,10 @@ public class ZcomAuthLoader {
 	public static Auth load(String path) throws IOException {
 		ObjectMapper mapper;
 		mapper = new ObjectMapper();
-		Auth auth = mapper.readValue(ZcomAuthLoader.loadString(path),
+		Auth auth = mapper.readValue(FileUtil.loadString(path),
 				Auth.class);
 
 		return auth;
-	}
-
-	private static String loadString(String path) throws IOException {
-		StringBuilder builder = new StringBuilder();
-
-		try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-			String string = reader.readLine();
-			while (string != null) {
-				builder.append(string + System.getProperty("line.separator"));
-				string = reader.readLine();
-			}
-		}
-
-		return builder.toString();
 	}
 
 }
