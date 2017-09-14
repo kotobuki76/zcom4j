@@ -1,3 +1,12 @@
+# zcom4jについて
+zcom4jは[Z.com API](https://cloud.z.com/sg/ja/cloud/docs/index.html)をJava上から扱いやすくするためのライブラリです。
+## JRE
+Java8
+## 依存ライブラリ
+- Apache HttpClient 4.5.3
+- Apache Jackson 2.9.0
+- JUnit 4.12
+
 # 対応しているAPI
 
 ## Identity API v2.0
