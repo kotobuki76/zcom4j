@@ -8,7 +8,7 @@ import com.brightsconsulting.zcom4j.api.common.APIInvoker;
 import com.brightsconsulting.zcom4j.json.response.compute.GetVersionListResponse;
 
 /**
- * バージョン情報取得 https://cloud.z.com/sg/ja/cloud/docs/identity-get_version_list.html
+ * バージョン情報取得 https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_list.html
  * 
  * @author kotobuki76
  * 
