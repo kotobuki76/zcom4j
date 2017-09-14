@@ -4,16 +4,16 @@
 
 ### パッケージ：com.brightsconsulting.zcom4j.api.identity
 
-|名称|URL|クラス|
-|:--|:--|:--|
-|バージョン情報取得|https://cloud.z.com/sg/ja/cloud/docs/identity-get_version_list.html|GetVersionList|
-|バージョン情報詳細取得|https://cloud.z.com/sg/ja/cloud/docs/identity-get_version_detail.html|com.brightsconsulting.zcom4j.api.identity.GetVersionDetail|
-|トークン発行|https://cloud.z.com/sg/ja/cloud/docs/identity-post_tokens.html|com.brightsconsulting.zcom4j.api.identity.PostTokens|
+|名称|クラス|
+|:--|:--|
+|[バージョン情報取得](https://cloud.z.com/sg/ja/cloud/docs/identity-get_version_list.html)|GetVersionList|
+|[バージョン情報詳細取得](https://cloud.z.com/sg/ja/cloud/docs/identity-get_version_detail.html)|GetVersionDetail|
+|[トークン発行](https://cloud.z.com/sg/ja/cloud/docs/identity-post_tokens.html|PostTokens)|
 
-##Compute API v2
+## Compute API v2
 
-###パッケージ：com.brightsconsulting.zcom4j.api.compute
+### パッケージ：com.brightsconsulting.zcom4j.api.compute
 
-|名称|URL|クラス|
-|:--|:--|:--|
-|バージョン情報取得|https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_list.html|GetVersionList|
+|名称|クラス|
+|:--|:--|
+|[バージョン情報取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_list.html)|GetVersionList|
