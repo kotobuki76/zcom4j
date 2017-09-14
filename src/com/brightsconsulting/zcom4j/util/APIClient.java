@@ -20,6 +20,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
+import com.brightsconsulting.zcom4j.BadRequestException;
 import com.brightsconsulting.zcom4j.json.common.Token;
 
 /**
@@ -54,7 +55,7 @@ public class APIClient {
 	 * @return　レスポンス文字列
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 * @throws AuthenticationException 
+	 * @throws AuthenticationException
 	 */
 	public String get(String url, Token token) throws ClientProtocolException,
 			IOException, AuthenticationException {
@@ -79,7 +80,8 @@ public class APIClient {
 
 	}
 
-	public String get(String url) throws ClientProtocolException, IOException, AuthenticationException {
+	public String get(String url) throws ClientProtocolException, IOException,
+			AuthenticationException {
 		return this.get(url, null);
 	}
 
@@ -93,15 +95,16 @@ public class APIClient {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws AuthenticationException
+	 * @throws BadRequestException
 	 */
 	public String post(String url, String data, Token token)
 			throws ClientProtocolException, IOException,
-			AuthenticationException {
+			AuthenticationException, BadRequestException {
 		this.createClient();
 		HttpPost post = null;
 		post = new HttpPost(url);
-		post.setHeader("Content-Type",
-				"application/x-www-form-urlencoded; charset=UTF-8");
+		// post.setHeader("Content-Type",
+		// "application/x-www-form-urlencoded; charset=UTF-8");
 		post.setHeader("Accept", "application/json");
 		if (token != null) {
 			post.setHeader("X-Auth-Token", token.id);
@@ -113,14 +116,16 @@ public class APIClient {
 		HttpResponse response = this.client.execute(post);
 
 		HttpEntity entity = response.getEntity();
+		String html = EntityUtils.toString(entity, "UTF-8");
 		int code = response.getStatusLine().getStatusCode();
-		if ((code == 200) || (code == 300)) {
-			String html = EntityUtils.toString(entity, "UTF-8");
+		if ((code == 202) || (code == 200) || (code == 300)) {
 			return html;
 		} else if (code == 404) {
 			throw new FileNotFoundException();
 		} else if (code == 401) {
 			throw new AuthenticationException();
+		} else if (code == 400) {
+			throw new BadRequestException(html);
 		} else {
 			System.out.println(response.getStatusLine().getStatusCode());
 			throw new UnsupportedOperationException();
@@ -128,7 +133,7 @@ public class APIClient {
 	}
 
 	public String post(String url, String data) throws ClientProtocolException,
-			IOException, AuthenticationException {
+			IOException, AuthenticationException, BadRequestException {
 		return this.post(url, data, null);
 	}
 

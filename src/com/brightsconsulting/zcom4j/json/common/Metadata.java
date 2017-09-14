@@ -5,13 +5,20 @@ package com.brightsconsulting.zcom4j.json.common;
  */
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Metadata {
 	/**
 	 * 
 	 */
-	public int is_admin;
+	public String is_admin;
 	/**
 	 * 
 	 */
 	public ArrayList<String> roles;
+	/**
+	 * 
+	 */
+	public String instance_name_tag;
 }
