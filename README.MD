@@ -18,3 +18,4 @@
 |:--|:--|
 |[バージョン情報取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_list.html)|GetVersionList|
 |[バージョン情報詳細取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_detail.html)|GetVersionDetail|
+|[VM追加](https://cloud.z.com/sg/ja/cloud/docs/compute-create_vm.html)|CreateVM|

@@ -6,6 +6,7 @@ import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
+import com.brightsconsulting.zcom4j.BadRequestException;
 import com.brightsconsulting.zcom4j.json.request.identity.PostTokensRequest;
 import com.brightsconsulting.zcom4j.json.response.identity.PostTokensResponse;
 import com.brightsconsulting.zcom4j.util.ZcomAuthLoader;
@@ -27,6 +28,9 @@ public class PostTokensTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadRequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
