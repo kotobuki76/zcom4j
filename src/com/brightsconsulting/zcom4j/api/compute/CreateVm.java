@@ -42,9 +42,7 @@ public class CreateVm extends APIInvoker {
 
 		String url = "https://compute.tyo1.cloud.z.com/v2/" + token.tenant.id
 				+ "/servers";
-		System.out.println(url);
 		String req_json = this.getObjectMapper().writeValueAsString(req);
-		System.out.println(req_json);
 		String res_json = this.getAPIClient().post(url, req_json, token);
 		CreateVmResponse res = this.getObjectMapper().readValue(res_json,
 				CreateVmResponse.class);
