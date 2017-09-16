@@ -34,6 +34,7 @@ public class CreateVmTest {
 			req.server.metadata.instance_name_tag = "TEST";
 			req.server.links = null;
 			token = ZcomTokenManager.loadDefault();
+			System.out.println(JsonWriter.toString(token));
 			CreateVmResponse res = createVm.request(token, req);
 			System.out.println(JsonWriter.toString(res));
 		} catch (ClientProtocolException e) {

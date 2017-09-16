@@ -12,6 +12,7 @@ import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.HttpClientUtils;
@@ -43,22 +44,20 @@ public class APIClient {
 	}
 
 	private void createClient() {
-		this.client = HttpClientBuilder.create()
-				.setDefaultRequestConfig(this.requestConfig)
+		this.client = HttpClientBuilder.create().setDefaultRequestConfig(this.requestConfig)
 				.setDefaultHeaders(this.headers).build();
 	}
 
 	/**
 	 * 
 	 * @param url
-	 *            　URL文字列
-	 * @return　レスポンス文字列
+	 *            URL文字列
+	 * @return レスポンス文字列
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws AuthenticationException
 	 */
-	public String get(String url, Token token) throws ClientProtocolException,
-			IOException, AuthenticationException {
+	public String get(String url, Token token) throws ClientProtocolException, IOException, AuthenticationException {
 		this.createClient();
 		HttpGet get = new HttpGet(url);
 		get.setHeader("Accept", "application/json");
@@ -80,26 +79,24 @@ public class APIClient {
 
 	}
 
-	public String get(String url) throws ClientProtocolException, IOException,
-			AuthenticationException {
+	public String get(String url) throws ClientProtocolException, IOException, AuthenticationException {
 		return this.get(url, null);
 	}
 
 	/**
 	 * 
 	 * @param url
-	 *            　URL文字列
+	 *            URL文字列
 	 * @param data
-	 *            　送信JSONデータ
-	 * @return　レスポンス文字列
+	 *            送信JSONデータ
+	 * @return レスポンス文字列
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 * @throws AuthenticationException
 	 * @throws BadRequestException
 	 */
 	public String post(String url, String data, Token token)
-			throws ClientProtocolException, IOException,
-			AuthenticationException, BadRequestException {
+			throws ClientProtocolException, IOException, AuthenticationException, BadRequestException {
 		this.createClient();
 		HttpPost post = null;
 		post = new HttpPost(url);
@@ -109,8 +106,7 @@ public class APIClient {
 		if (token != null) {
 			post.setHeader("X-Auth-Token", token.id);
 		}
-		StringEntity requestEntity = new StringEntity(data,
-				ContentType.APPLICATION_JSON);
+		StringEntity requestEntity = new StringEntity(data, ContentType.APPLICATION_JSON);
 		post.setEntity(requestEntity);
 
 		HttpResponse response = this.client.execute(post);
@@ -132,8 +128,19 @@ public class APIClient {
 		}
 	}
 
-	public String post(String url, String data) throws ClientProtocolException,
-			IOException, AuthenticationException, BadRequestException {
+	/**
+	 * Tokenなしでの呼び出し
+	 * 
+	 * @param url
+	 * @param data
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws AuthenticationException
+	 * @throws BadRequestException
+	 */
+	public String post(String url, String data)
+			throws ClientProtocolException, IOException, AuthenticationException, BadRequestException {
 		return this.post(url, data, null);
 	}
 
@@ -141,8 +148,34 @@ public class APIClient {
 		return null;
 	}
 
-	public String delete() {
-		return null;
+	/**
+	 * DELETEコマンドの発行
+	 * @param url
+	 * @param token
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws AuthenticationException
+	 */
+	public void delete(String url, Token token) throws ClientProtocolException, IOException, AuthenticationException {
+
+		this.createClient();
+		HttpDelete del = new HttpDelete(url);
+		del.setHeader("Accept", "application/json");
+		if (token != null) {
+			del.setHeader("X-Auth-Token", token.id);
+		}
+		HttpResponse response = this.client.execute(del);
+		//HttpEntity entity = response.getEntity();
+		int code = response.getStatusLine().getStatusCode();
+		if ((code == 200) || (code == 300) || (code == 204)) {
+			return;
+		} else if (code == 401) {
+			throw new AuthenticationException();
+		} else {
+			System.out.println(response.getStatusLine().getStatusCode());
+			throw new FileNotFoundException();
+		}
 	}
 
 	/**

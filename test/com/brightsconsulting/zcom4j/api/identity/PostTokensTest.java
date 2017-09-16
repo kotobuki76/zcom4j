@@ -10,6 +10,7 @@ import com.brightsconsulting.zcom4j.BadRequestException;
 import com.brightsconsulting.zcom4j.json.request.identity.PostTokensRequest;
 import com.brightsconsulting.zcom4j.json.response.identity.PostTokensResponse;
 import com.brightsconsulting.zcom4j.util.ZcomAuthLoader;
+import com.brightsconsulting.zcom4j.util.ZcomTokenManager;
 
 public class PostTokensTest {
 
@@ -21,6 +22,7 @@ public class PostTokensTest {
 			req.auth = ZcomAuthLoader.loadDefault();
 			PostTokensResponse postTokensResponse = postTokens.request(req);
 			System.out.println(postTokensResponse.access.token.id);
+			ZcomTokenManager.saveDefault(postTokensResponse.access.token);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
