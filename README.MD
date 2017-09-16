@@ -29,3 +29,4 @@ Java8
 |[バージョン情報詳細取得](https://cloud.z.com/sg/ja/cloud/docs/compute-get_version_detail.html)|GetVersionDetail|
 |[VM追加](https://cloud.z.com/sg/ja/cloud/docs/compute-create_vm.html)|CreateVm|
 |[VM詳細取得（アイテム指定) ](https://cloud.z.com/sg/ja/cloud/docs/compute-get_vms_detail_specified.html)|GetVmsDetailSpecified|
+|[VM削除](https://cloud.z.com/sg/ja/cloud/docs/compute-delete_vm.html)|DeleteVM|
