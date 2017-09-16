@@ -2,8 +2,10 @@ package com.brightsconsulting.zcom4j.json.common;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
+import com.brightsconsulting.zcom4j.util.JsonWriter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -62,13 +64,27 @@ public class Server {
 		this.security_groups = new ArrayList<SecurityGroup>();
 		this.links = new ArrayList<Link>();
 		this.metadata = new Metadata();
+		this.addresses = new HashMap<String, ArrayList<Address>>();
 	}
 
+	@SuppressWarnings("unchecked")
 	@JsonAnySetter
 	public void set(String name, Object value) {
 		if (name.startsWith("ext-")) {
 			this.addresses.put(name, (ArrayList<Address>) value);
 		}
+	}
+
+	public String getIPV4Addr() {
+		for (Map.Entry<String, ArrayList<Address>> e : this.addresses.entrySet()) {
+			ArrayList<Address> address = e.getValue();
+			for (Address a : address) {
+				if (a.version.equals("4")) {
+					return a.addr;
+				}
+			}
+		}
+		return null;
 	}
 
 }
