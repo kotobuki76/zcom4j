@@ -1,0 +1,28 @@
+<project name="make_release" default="all" basedir="." >
+	
+	<property name="release.target" value="release/0.1"/>
+	
+	<target name="all" depends="make_zcom4j_jar">
+	</target>
+	<target name="make_zcom4j_jar">
+		<mkdir dir="${release.target}"/>
+		<mkdir dir="${release.target}/lib"/>
+		<mkdir dir="${release.target}/docs"/>
+		<jar basedir="./bin" jarfile="${release.target}/zcom4j.jar">
+		</jar>
+		<copy todir="${release.target}/lib">
+		    <fileset dir="lib/" includes="**/*.jar"/>
+		  </copy>
+	</target>
+	
+	<javadoc packagenames="com.brightsconsulting.zcom4j.*"
+	           sourcepath="src"
+	           defaultexcludes="yes"
+	           destdir="${release.target}/docs"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="zcom4j 0.1">
+	    <doctitle><![CDATA[<h1>zcom4j 0.1</h1>]]></doctitle>
+	  </javadoc>
+</project>
